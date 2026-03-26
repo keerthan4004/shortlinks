@@ -8,7 +8,7 @@ def home(request):
         form = URLForm(request.POST)
         if form.is_valid():
             url = form.save()
-            short_url = request.build_absolute_url(f'/{url.short_code}/')
+            short_url = request.build_absolute_uri(f'/{url.short_code}/')
             return render(request, 'shortener/home.html', {
                 'form' : URLForm(),
                 'short_url' : short_url,

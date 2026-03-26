@@ -1,0 +1,29 @@
+{% extends "shortener/base.html" %}
+
+{% block content %}
+<h1>Shortlinks</h1>
+<p class="subtitle">Shorten your URLs instantly. No signup needed.</p>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.original_url }}
+    {% if form.original_url.errors %}
+        <p class="error">{{ form.original_url.errors.as_text }}</p>
+    {% endif %}
+    <button type="submit" class="btn">Shorten URL →</button>
+</form>
+
+{% if short_url %}
+<div class="result-box">
+    <p>Your shortened URL:</p>
+    <a href="{{ short_url }}" class="short-url" target="_blank">{{ short_url }}</a>
+    <br>
+    <button class="copy-btn" onclick="navigator.clipboard.writeText('{{ short_url }}')">
+        Copy to clipboard
+    </button>
+    <p style="margin-top:1rem; color:#555;">
+        Original: {{ original_url|truncatechars:60 }}
+    </p>
+</div>
+{% endif %}
+{% endblock %}
