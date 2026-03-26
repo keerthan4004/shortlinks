@@ -21,6 +21,21 @@
     <button class="copy-btn" onclick="navigator.clipboard.writeText('{{ short_url }}')">
         Copy to clipboard
     </button>
+
+    <div style="margin-top: 1.5rem;">
+        <p style="color: #888; margin-bottom: 0.75rem;">QR Code:</p>
+        <img src="{% url 'generate_qr' short_code %}"
+             alt="QR Code"
+             style="background:white; padding:10px; border-radius:8px; width:160px;">
+        <br>
+        <a href="{% url 'generate_qr' short_code %}"
+           download="qrcode.png"
+           class="copy-btn"
+           style="display:inline-block; margin-top:0.75rem;">
+            Download QR Code
+        </a>
+    </div>
+
     <p style="margin-top:1rem; color:#555;">
         Original: {{ original_url|truncatechars:60 }}
     </p>
