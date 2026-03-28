@@ -12,6 +12,11 @@
     {% endif %}
     <button type="submit" class="btn">Shorten URL →</button>
 </form>
+<p style="text-align:center; margin-top:1.5rem;">
+    <a href="{% url 'dashboard' %}" style="color:#667eea; text-decoration:none; font-size:0.9rem;">
+        View all links → Dashboard
+    </a>
+</p>
 
 {% if short_url %}
 <div class="result-box">

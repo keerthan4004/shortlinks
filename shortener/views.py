@@ -51,3 +51,7 @@ def generate_qr(request, short_code):
     buffer.seek(0)
 
     return HttpResponse(buffer, content_type='image/png')
+
+def dashboard(request):
+    urls = URL.objects.all().order_by('-created_at')
+    return render(request, 'shortener/dashboard.html', {'urls': urls})
